@@ -31,7 +31,7 @@ import { getProductById, getRelatedProducts, type Product } from "@/lib/data/pro
 import { useCart } from "@/lib/hooks/useCart"
 import Link from "next/link"
 
-export default function ProductDetailPage() {
+function ProductDetailPage() {
     const params = useParams()
     const productId = params.productId as string
     const { addToCart } = useCart()
@@ -146,14 +146,9 @@ export default function ProductDetailPage() {
                                     </button>
                                 ))}
                             </div>
-                                    >
-                                        <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-                                            <CategoryIcon className="w-8 h-8 text-gray-600" />
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
                         )}
+                    </div>
+
                     {/* Product Info */}
                     <div className="space-y-6">
                         <div>
@@ -448,5 +443,9 @@ export default function ProductDetailPage() {
                 )}
             </div>
         </div>
-    )
+    );
+}
+
+export default function Page() {
+    return <ProductDetailPage />;
 }
