@@ -2,6 +2,7 @@
   # base = "frontend"  # Uncomment if your app is in a subdirectory
   command = "npm run build"
   publish = "out"
+  # Trigger new deployment
 
 [build.environment]
   NODE_VERSION = "18"
