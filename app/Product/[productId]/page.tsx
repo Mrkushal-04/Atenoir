@@ -103,10 +103,11 @@ function ProductDetailPage() {
         }
     }
 
-    const CategoryIcon = getCategoryIcon(product.category)
+    const CategoryIcon = getCategoryIcon(product.category) as React.ElementType;
+    {CategoryIcon && <CategoryIcon className="w-32 h-32 text-gray-600" />}
 
     return (
-        <div className="min-h-screen bg-black/[0.96] text-white">
+
             <div className="container mx-auto px-6 py-16">
                 {/* Breadcrumb */}
                 <div className="mb-8">
@@ -442,7 +443,6 @@ function ProductDetailPage() {
                     </div>
                 )}
             </div>
-        </div>
     );
 }
 

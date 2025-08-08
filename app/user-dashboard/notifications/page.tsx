@@ -1,14 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { UserData } from "@/lib/hooks/useUserData";
 import { useUserData } from "@/lib/hooks/useUserData";
 
-interface NotificationsPageProps {
-    userData: UserData;
-}
-
-export default function NotificationsPage({ userData }: NotificationsPageProps) {
-    const { markNotificationAsRead, deleteNotification } = useUserData();
+export default function NotificationsPage() {
+    const { userData, markNotificationAsRead, deleteNotification } = useUserData();
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const handleMarkAsRead = (id: string) => {
@@ -22,6 +17,15 @@ export default function NotificationsPage({ userData }: NotificationsPageProps) 
             setTimeout(() => setDeletingId(null), 1000);
         }
     };
+
+    if (!userData) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-white">
+                Loading...
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-black/[0.96] flex items-center justify-center">
             <div className="bg-white/5 rounded-2xl shadow-lg p-10 w-full max-w-2xl">
@@ -63,4 +67,4 @@ export default function NotificationsPage({ userData }: NotificationsPageProps) 
             </div>
         </div>
     );
-} 
+}
