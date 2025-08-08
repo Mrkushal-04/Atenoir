@@ -2,7 +2,7 @@
 import { Canvas, useFrame, extend } from "@react-three/fiber";
 import { OrbitControls, Environment, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 // Extend the fiber catalog with three.js objects
 extend(THREE);
@@ -21,6 +21,20 @@ function ProductModel() {
 }
 
 export default function ThreeDCanvas({ cameraDistance = 5, autoRotate = true, showGrid = true, showLights = true }) {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-gray-800">
+                <div className="text-white">Loading 3D Viewer...</div>
+            </div>
+        );
+    }
+
     return (
         <Canvas>
             <PerspectiveCamera makeDefault position={[0, 0, cameraDistance]} />
