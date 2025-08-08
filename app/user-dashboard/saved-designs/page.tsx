@@ -4,10 +4,19 @@ import { UserData } from "@/lib/hooks/useUserData";
 import { useUserData } from "@/lib/hooks/useUserData";
 
 interface SavedDesignsPageProps {
-    userData: UserData;
+    userData?: UserData;
 }
 
 export default function SavedDesignsPage({ userData }: SavedDesignsPageProps) {
+    // Handle case where userData is undefined (during static export)
+    if (!userData) {
+        return (
+            <div className="bg-white/5 rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-white mb-4">Saved Designs</h2>
+                <div className="text-gray-400">Please log in to view your saved designs</div>
+            </div>
+        );
+    }
     const { deleteSavedDesign } = useUserData();
     const [deletingId, setDeletingId] = useState<string | null>(null);
 

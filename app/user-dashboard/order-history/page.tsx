@@ -3,10 +3,19 @@ import React from "react";
 import { UserData } from "@/lib/hooks/useUserData";
 
 interface OrderHistoryPageProps {
-    userData: UserData;
+    userData?: UserData;
 }
 
 export default function OrderHistoryPage({ userData }: OrderHistoryPageProps) {
+    // Handle case where userData is undefined (during static export)
+    if (!userData) {
+        return (
+            <div className="bg-white/5 rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-white mb-4">Order History</h2>
+                <div className="text-gray-400">Please log in to view your order history</div>
+            </div>
+        );
+    }
     return (
         <div className="min-h-screen bg-black/[0.96] flex items-center justify-center">
             <div className="bg-white/5 rounded-2xl shadow-lg p-10 w-full max-w-2xl">

@@ -4,10 +4,19 @@ import { UserData } from "@/lib/hooks/useUserData";
 import { useUserData } from "@/lib/hooks/useUserData";
 
 interface AddressBookPageProps {
-    userData: UserData;
+    userData?: UserData;
 }
 
 export default function AddressBookPage({ userData }: AddressBookPageProps) {
+    // Handle case where userData is undefined (during static export)
+    if (!userData) {
+        return (
+            <div className="bg-white/5 rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-white mb-4">Address Book</h2>
+                <div className="text-gray-400">Please log in to view your addresses</div>
+            </div>
+        );
+    }
     const { deleteAddress } = useUserData();
     const [deletingId, setDeletingId] = useState<string | null>(null);
 

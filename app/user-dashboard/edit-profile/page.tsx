@@ -5,12 +5,23 @@ import { useUserData } from "@/lib/hooks/useUserData";
 import { useRouter } from "next/navigation";
 
 interface EditProfilePageProps {
-    userData: UserData;
+    userData?: UserData;
 }
 
 export default function EditProfilePage({ userData }: EditProfilePageProps) {
     const router = useRouter();
     const { updateProfile } = useUserData();
+    
+    // Handle case where userData is undefined (during static export)
+    if (!userData || !userData.profile) {
+        return (
+            <div className="bg-white/5 rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-white mb-4">Edit Profile</h2>
+                <div className="text-gray-400">Please log in to edit your profile</div>
+            </div>
+        );
+    }
+    
     const [name, setName] = useState(userData.profile.name);
     const [email, setEmail] = useState(userData.profile.email);
     const [avatar, setAvatar] = useState(userData.profile.avatar);
