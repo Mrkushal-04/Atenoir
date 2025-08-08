@@ -4,7 +4,7 @@ import ProductDetailClient from "./ProductDetailClient"
 // Generate static params for build (server component)
 export function generateStaticParams() {
   return products.map((product) => ({
-    productId: product.id,
+            productId: product.id,
   }))
 }
 

@@ -15,4 +15,4 @@ export function generateStaticParams() {
 // Server component that renders client component
 export default function TrackOrderPage() {
     return <TrackOrderClient />
-}
+} 
