@@ -104,8 +104,6 @@ function ProductDetailPage() {
     }
 
     const CategoryIcon = getCategoryIcon(product.category) as React.ElementType;
-    {CategoryIcon && <CategoryIcon className="w-32 h-32 text-gray-600" />}
-
     return (
 
             <div className="container mx-auto px-6 py-16">
